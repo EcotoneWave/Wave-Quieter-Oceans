@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quieter Oceans — Logic Model</title>
+<style>
+  :root {
+    --navy: #002e4a;
+    --coral: #dc5038;
+    --coral-light: #fbe3dc;
+    --grey: #888888;
+    --row-alt: #f2f6f8;
+    --gridline: #c9d4da;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: var(--navy);
+  }
+  .title-bar {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 24px 32px;
+    border-bottom: 6px solid var(--coral);
+  }
+  .title-bar h1 {
+    margin: 0 0 4px 0;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  .title-bar .subtitle {
+    font-size: 14px;
+    color: #cfe0ea;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 32px;
+    font-size: 13px;
+    color: var(--navy);
+    background: #f7fafc;
+    border-bottom: 1px solid var(--gridline);
+  }
+  .legend .swatch {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: var(--coral-light);
+    border: 1px solid var(--coral);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    padding: 16px 24px 32px 24px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 1900px;
+    font-size: 13px;
+    table-layout: fixed;
+  }
+  col.inputs    { width: 10%; }
+  col.activities{ width: 14%; }
+  col.outputs   { width: 11%; }
+  col.immediate { width: 9%; }
+  col.st        { width: 10.5%; }
+  col.shortint  { width: 11.5%; }
+  col.int       { width: 11.5%; }
+  col.lt        { width: 11%; }
+  col.impacts   { width: 11.5%; }
+
+  th {
+    background: var(--navy);
+    color: #ffffff;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 13px;
+    border: 1px solid var(--navy);
+    vertical-align: top;
+  }
+  th .col-sub {
+    display: block;
+    font-weight: 400;
+    font-size: 11px;
+    color: #cfe0ea;
+    margin-top: 3px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  td {
+    border: 1px solid var(--gridline);
+    padding: 10px 12px;
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  td.spans {
+    background: #ffffff;
+  }
+  tr.section-row.navy td {
+    background: var(--navy);
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12.5px;
+    padding: 8px 12px;
+    border: 1px solid var(--navy);
+  }
+  tr.section-row.coral td {
+    background: var(--coral);
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12.5px;
+    padding: 8px 12px;
+    border: 1px solid var(--coral);
+  }
+  tr.content-row:nth-of-type(odd) td.outcome-cell {
+    background: var(--row-alt);
+  }
+  ul.cell-list {
+    margin: 0;
+    padding-left: 18px;
+  }
+  ul.cell-list li {
+    margin-bottom: 5px;
+  }
+  ul.cell-list li:last-child {
+    margin-bottom: 0;
+  }
+  .bundle-title {
+    font-weight: 700;
+    color: var(--coral);
+    margin: 10px 0 4px 0;
+    font-size: 12.5px;
+  }
+  .bundle-title:first-child {
+    margin-top: 0;
+  }
+  .bundle-block ul.cell-list {
+    margin-bottom: 6px;
+  }
+  .lead-note {
+    font-style: italic;
+    color: var(--grey);
+    margin: 0 0 8px 0;
+    font-size: 12px;
+  }
+  .monetizable {
+    background: var(--coral-light);
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 1px 2px;
+    border-radius: 2px;
+  }
+  .dash {
+    color: var(--grey);
+  }
+  .footer-key {
+    padding: 20px 32px 36px 32px;
+    border-top: 1px solid var(--gridline);
+    font-size: 13px;
+    color: var(--navy);
+    background: #f7fafc;
+  }
+  .footer-key h2 {
+    font-size: 16px;
+    color: var(--coral);
+    margin: 0 0 10px 0;
+  }
+  .footer-key h3 {
+    font-size: 13.5px;
+    color: var(--navy);
+    margin: 16px 0 6px 0;
+  }
+  .footer-key p {
+    margin: 0 0 8px 0;
+    line-height: 1.55;
+    max-width: 1100px;
+  }
+  .footer-key .source-line {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--grey);
+    border-top: 1px solid var(--gridline);
+    padding-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-bar">
+  <h1>Quieter Oceans — Logic Model</h1>
+  <div class="subtitle">WAVE | Phase 1 Scoping | June 2026</div>
+</div>
+
+<div class="legend">
+  <div style="margin-right:32px;"><span class="swatch"></span>Potential monetizable outcome based on evidence reviewed</div>
+  <div>Numbers in parentheses indicate alignment with intervention bundles (1)&ndash;(6)</div>
+</div>
+
+<div class="table-wrap">
+<table>
+  <colgroup>
+    <col class="inputs">
+    <col class="activities">
+    <col class="outputs">
+    <col class="immediate">
+    <col class="st">
+    <col class="shortint">
+    <col class="int">
+    <col class="lt">
+    <col class="impacts">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Inputs</th>
+      <th>Activities<span class="col-sub">Design optimization (Bundles 1&ndash;4) and operational optimization (Bundles 5&ndash;6), validated through Quiet Ship review and approval</span></th>
+      <th>Outputs</th>
+      <th>Immediate Outcomes<span class="col-sub">Direct measurement of intervention effect</span></th>
+      <th>Short-Term Outcomes<span class="col-sub">Vessel &amp; operational changes</span></th>
+      <th>Short-Intermediate Outcomes<span class="col-sub">Early system-level responses</span></th>
+      <th>Intermediate Outcomes<span class="col-sub">System-level responses</span></th>
+      <th>Long-Term Outcomes<span class="col-sub">Structural &amp; population-level change</span></th>
+      <th>Impacts<span class="col-sub">Strategic &amp; societal level</span></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- ===================== SHIPPING COMPANY ===================== -->
+    <tr class="section-row navy">
+      <td colspan="3"></td>
+      <td colspan="5">Shipping Company</td>
+      <td></td>
+    </tr>
+    <tr class="content-row">
+      <td rowspan="8" class="spans">
+        <ul class="cell-list">
+          <li>Incremental newbuild / design-stage CAPEX</li>
+          <li>Naval architecture &amp; hydrodynamic engineering expertise</li>
+          <li>Acoustic monitoring equipment and expertise</li>
+          <li>Trained crew to operate new design features and implement operational measures</li>
+          <li>Decarbonization policy frameworks</li>
+          <li>Voluntary URN reduction guidelines</li>
+        </ul>
+      </td>
+      <td rowspan="8" class="spans">
+        <div class="bundle-block">
+          <div class="bundle-title">(1) Propeller, Wake &amp; Cavitation Management</div>
+          <ul class="cell-list">
+            <li>Design and selection of low-cavitation propeller geometry</li>
+            <li>Optimization of stern form and wake field</li>
+            <li>Alignment of propeller design with actual operating profile</li>
+            <li>Validation through prediction, trials, and class acceptance</li>
+          </ul>
+        </div>
+        <div class="bundle-block">
+          <div class="bundle-title">(2) Hull Design &amp; Coatings</div>
+          <ul class="cell-list">
+            <li>Optimized hull form (hydrodynamic optimization)</li>
+            <li>Bulbous bow optimization</li>
+            <li>Stern shape optimization</li>
+            <li>Advanced antifouling coatings</li>
+          </ul>
+        </div>
+        <div class="bundle-block">
+          <div class="bundle-title">(3) Machinery Isolation &amp; Structural Damping</div>
+          <ul class="cell-list">
+            <li>Resilient engine mounts</li>
+            <li>Flexible shaft couplings</li>
+            <li>Gearbox isolation systems</li>
+            <li>Structural damping treatments</li>
+            <li>Floating floors / isolated machinery rooms</li>
+          </ul>
+        </div>
+        <div class="bundle-block">
+          <div class="bundle-title">(4) Wind-Assisted Propulsion</div>
+          <ul class="cell-list">
+            <li>Flettner rotors (rotor sails)</li>
+            <li>Rigid wing sails</li>
+            <li>Kite sails</li>
+            <li>Hybrid wind + engine systems</li>
+          </ul>
+        </div>
+        <div class="bundle-block">
+          <div class="bundle-title">(5) Speed Reduction, Operational Measures &amp; Maintenance</div>
+          <ul class="cell-list">
+            <li>Speed reduction</li>
+            <li>Power management optimization</li>
+            <li>Propeller polishing</li>
+            <li>Hull cleaning</li>
+            <li>Crew operational training</li>
+          </ul>
+        </div>
+        <div class="bundle-block">
+          <div class="bundle-title">(6) Routing &amp; Temporal Management</div>
+          <ul class="cell-list">
+            <li>Lateral displacement of shipping lanes</li>
+            <li>Dynamic routing</li>
+            <li>Seasonal routing adjustments</li>
+          </ul>
+        </div>
+      </td>
+      <td rowspan="8" class="spans">
+        <ul class="cell-list">
+          <li>Low-noise certified vessels (Quiet Ship notation)</li>
+          <li>(1) New vessel with low-noise, high-efficiency propeller; reduced operational RPM for equivalent thrust</li>
+          <li>(2) Optimized low-resistance hull form; advanced antifouling coating applied; reduced hydrodynamic drag at design speed; reduced shaft power for equivalent thrust</li>
+          <li>(3) Resilient engine / gearbox mounts and structural damping or vibration isolation installed; reduced structure-borne vibration to hull</li>
+          <li>(4) Wind-assisted propulsion installed; reduced main engine load and operational RPM for equivalent thrust</li>
+          <li>(5) Operational RPM limits established for defined routes / zones; regular propeller polishing &amp; hull cleaning schedule implemented</li>
+          <li>(6) Revised routing plan adopted avoiding sensitive habitats; seasonal / dynamic routing protocols implemented</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Measured or predicted reduction in URN source levels (1&ndash;6)</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Reduced underwater radiated noise per voyage (6)</li>
+          <li>Reduction in cavitation-related vibration (2)(3)(4)(6)</li>
+          <li>Measured reduction in average voyage speed (1)(2)(3)(4)(6)</li>
+          <li>Increased total travel times from slower speeds / longer routes (1)(2)(3)(4)</li>
+          <li>Improved speed-power performance (3)(4)(6)</li>
+          <li>Reduced vessel transit time within designated sensitive zones (1)(2)(3)(4)(5)</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Positive compliance positioning for IMO (6)</li>
+          <li><span class="monetizable">Reduced fuel consumption and fuel costs (3)(6)</span></li>
+          <li>Improved operational efficiency (more reliable ETA performance, optimized slow-steaming strategies)</li>
+          <li>Improved crew comfort and daily working conditions (2)(4)(6)</li>
+          <li><span class="monetizable">Reduced future compliance costs and port fees, where applicable</span></li>
+          <li>Enhanced ESG performance and reputational value for the shipowner</li>
+          <li class="dash">Possible increase in number of ships to overcome slower speeds / longer routes &mdash; a watch-item, not a benefit</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Lower maintenance costs and intervals from reduced cavitation erosion (4)(6)</li>
+          <li>Lower fatigue levels, improved health, and increased productivity</li>
+          <li>Improved worker retention and job satisfaction</li>
+        </ul>
+      </td>
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Improved long-term competitiveness and resilience of the shipping industry through lower operating costs, reduced regulatory risk, and enhanced social license to operate in environmentally sensitive regions</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- ===================== MARINE ECOSYSTEM ===================== -->
+    <tr class="section-row coral">
+      <td colspan="5">Marine Ecosystem &mdash; Salish Sea Case Study</td>
+      <td></td>
+    </tr>
+    <tr class="content-row">
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Reduced exposure of marine fauna to URN, per voyage / corridor</li>
+          <li>Reduced acoustic masking of Southern Resident killer whales (SRKW) and humpback whales</li>
+          <li>Reduced stress on salmon, other economically valuable fish, and forage fish</li>
+          <li>Increased acoustic detectability of vessels by humpback whales</li>
+          <li>Reduced biofouling (1)(3)(4)(6)</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Improved habitat use</li>
+          <li>Improved SRKW and humpback whale prey detection and foraging success</li>
+          <li>Increased fish weight and improved survival probability</li>
+          <li>Increased avoidance response to vessels</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Improved reproductive capacity and recovery potential of SRKW, humpback whales, salmon, and other economically valuable fish &mdash; in combination with prey-base and habitat measures</li>
+          <li>Reduced strike lethality at lower vessel speeds</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Improved population status and diversity of sensitive marine species in shipping lanes</li>
+          <li>Increased phytoplankton biomass</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Healthier and more resilient marine ecosystems in major shipping routes, supporting biodiversity conservation and the long-term provision of ocean ecosystem services</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- ===================== GLOBAL SOCIETY ===================== -->
+    <tr class="section-row navy">
+      <td colspan="5">Global Society</td>
+      <td></td>
+    </tr>
+    <tr class="content-row">
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Reduced GHG emissions from fuel efficiency (3)(6)</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li><span class="monetizable">Reduced social cost of carbon incurred</span></li>
+          <li>Increased whale biomass carbon sequestration from reduced strikes</li>
+          <li>Increased phytoplankton CO&#8322; uptake from avoided whale strikes</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Contribution to global and regional climate goals</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- ===================== LOCAL COMMUNITIES ===================== -->
+    <tr class="section-row coral">
+      <td colspan="5">Local Communities</td>
+      <td></td>
+    </tr>
+    <tr class="content-row">
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Reduced noise disturbance in coastal and port-adjacent communities (2)(4)(6)</li>
+          <li>Lower vibration and port-area noise</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Improved local air quality from lower fuel consumption (3)(6)</li>
+          <li>Improved livability around docks and waterfronts (2)(4)</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li>Improved fish catch efficiency</li>
+        </ul>
+      </td>
+      <td class="outcome-cell">
+        <ul class="cell-list">
+          <li><span class="monetizable">Increased fishery revenue for fisheries adjacent to shipping traffic, and reduced effort costs</span></li>
+          <li><span class="monetizable">Increased coastal tourism &mdash; whale watching, etc. (3)</span></li>
+          <li>Improved health of local community</li>
+        </ul>
+      </td>
+      <td class="outcome-cell"><span class="dash">&mdash;</span></td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+<div class="footer-key">
+  <div class="source-line" style="border-top:none; margin-top:0; padding-top:0;">
+    <strong>Key:</strong> Coral-shaded items indicate potential monetizable outcomes for SROI analysis. &nbsp;|&nbsp;
+    Numbers in parentheses (e.g., (1)(2)) indicate alignment with the corresponding intervention bundle. &nbsp;|&nbsp;
+    WAVE Quieter Oceans SROI &mdash; Phase 1 Scoping | Ecotone Partners, June 2026
+  </div>
+</div>
+
+</body>
+</html>
